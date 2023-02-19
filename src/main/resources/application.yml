@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/exam_system?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 5MB
+
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
+oss:
+  accessKey: hjr05n6YQR-knq4ygpm-WT7L5H8dgaAcZbUJIbW4
+  secretKey: PMeQq8s7ikZx6iY28OJV63EISsCJPtUlxdpvsZrK
+  bucket: yl-zz-test
+  outChain: rq9ueczku.hd-bkt.clouddn.com
