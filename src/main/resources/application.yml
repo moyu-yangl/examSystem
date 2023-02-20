@@ -21,6 +21,7 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
       id-type: auto
+  type-aliases-package: com.examSystem.domain.entity
 
 oss:
   accessKey: hjr05n6YQR-knq4ygpm-WT7L5H8dgaAcZbUJIbW4
