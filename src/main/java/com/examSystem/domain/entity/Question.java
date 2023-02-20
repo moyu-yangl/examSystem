@@ -1,5 +1,6 @@
 package com.examSystem.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,8 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName("question")
 public class Question {
-    //考题id@TableId
+    //考题id
+    @TableId
     private Long questionId;
 
     //x 选择题，t 填空题

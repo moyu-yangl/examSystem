@@ -1,5 +1,6 @@
 package com.examSystem.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,8 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName("menu")
 public class Menu {
-    //权限菜单id@TableId
+    //权限菜单id
+    @TableId
     private Long menuId;
 
     //权限菜单名称

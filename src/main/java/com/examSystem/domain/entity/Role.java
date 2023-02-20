@@ -1,5 +1,6 @@
 package com.examSystem.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,8 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName("role")
 public class Role {
-    //角色id@TableId
+    //角色id
+    @TableId
     private Long roleId;
 
     //角色名称

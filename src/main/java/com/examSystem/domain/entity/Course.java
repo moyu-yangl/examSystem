@@ -1,13 +1,13 @@
 package com.examSystem.domain.entity;
 
-import java.util.Date;
-
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.util.Date;
+
 /**
  * 课程表(Course)表实体类
  *
@@ -19,8 +19,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("course")
-public class Course  {
-    //课程id@TableId
+public class Course {
+    //课程id
+    @TableId
     private Long courseId;
 
     //用户id 外键
@@ -37,7 +38,6 @@ public class Course  {
     private Date updateTime;
     //删除标志（0代表未删除，1代表已删除）
     private Integer delFlag;
-
 
 
 }
