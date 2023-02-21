@@ -62,8 +62,8 @@
               <option name="name" value="Course" />
               <option name="preName" value="" />
               <option name="saveModelName" value="examSystem" />
-              <option name="savePackageName" value="com.examSystem.domain" />
-              <option name="savePath" value="./src/main/java/com/examSystem/domain" />
+              <option name="savePackageName" value="com.examSystem.mapper" />
+              <option name="savePath" value="./src/main/java/com/examSystem/mapper" />
               <option name="templateGroupName" value="Default" />
             </TableInfoDTO>
           </value>

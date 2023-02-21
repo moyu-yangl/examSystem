@@ -12,17 +12,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/info")
+    @GetMapping("/info")
     public ResponseResult getUserInfo() {
         return userService.getUserInfo();
     }
 
-    @PutMapping("/user/update")
+    @PutMapping("/update")
     public ResponseResult updateUser(@RequestBody UserInfoDto userInfoDto) {
         return userService.updateUser(userInfoDto);
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/register")
     public ResponseResult registerUser(@RequestBody UserRegisterDto userRegisterDto) {
         return userService.register(userRegisterDto);
     }
