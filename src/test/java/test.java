@@ -1,5 +1,6 @@
 import com.examSystem.ExamSystemApplication;
-import com.examSystem.domain.entity.User;
+import com.examSystem.domain.ResponseResult;
+import com.examSystem.service.MenuService;
 import com.examSystem.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,12 @@ public class test {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MenuService menuService;
+
     @Test
     public void userTest() {
-        User byId = userService.getById(1);
-        System.out.println(byId.getName());
+        ResponseResult routers = menuService.getRouters();
+        System.out.println(1);
     }
 }

@@ -4,6 +4,7 @@ import com.examSystem.domain.ResponseResult;
 import com.examSystem.domain.dot.UserDto;
 import com.examSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,4 +19,10 @@ public class LoginController {
     public ResponseResult login(@RequestBody UserDto user) {
         return userService.login(Long.valueOf(user.getUserId()), user.getPassword());
     }
+
+    @GetMapping("/logout")
+    public ResponseResult logout() {
+        return userService.logout();
+    }
+
 }

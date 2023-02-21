@@ -29,7 +29,7 @@ public class Menu {
     //父菜单id
     private Long parentId;
     //子菜单
-    private Long childrenId;
+    private String component;
     //路径
     private String path;
     //菜单类型

@@ -1,9 +1,12 @@
 package com.examSystem.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.examSystem.domain.ResponseResult;
 import com.examSystem.domain.entity.LoginUser;
+import com.examSystem.enums.HttpCodeEnum;
 import com.examSystem.utils.JwtUtil;
 import com.examSystem.utils.RedisCache;
+import com.examSystem.utils.WebUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,24 +37,37 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
-        //2. 解析token得到userid
-        Claims claims = JwtUtil.parseJWT(token);
-        String userID = claims.getSubject();
+        String userID;
+        try {
+            //2. 解析token得到userid
+            Claims claims = JwtUtil.parseJWT(token);
+            userID = claims.getSubject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResponseResult result = ResponseResult.errorResult(HttpCodeEnum.NEED_LOGIN);
+            WebUtils.renderString(httpServletResponse, JSON.toJSONString(result));
+            return;
+        }
+
 
         // 如果token错误或者已经过期 则userId为空
         if (!StringUtils.hasText(userID)) {
             ResponseResult response = new ResponseResult();
             //TODO 写入返回响应   需要登录
+            ResponseResult result = ResponseResult.errorResult(HttpCodeEnum.NEED_LOGIN);
+            WebUtils.renderString(httpServletResponse, JSON.toJSONString(result));
             return;
         }
 
         //3. 从redis查询user
-        LoginUser user = redisCache.getCacheObject("userlogin:" + userID);
+        LoginUser user = redisCache.getCacheObject("loginUser:" + userID);
 
         // 如果token没过期而redis中过期则user为空
         if (Objects.isNull(user)) {
             ResponseResult response = new ResponseResult();
             //TODO 写入返回响应   需要登录
+            ResponseResult result = ResponseResult.errorResult(HttpCodeEnum.NEED_LOGIN);
+            WebUtils.renderString(httpServletResponse, JSON.toJSONString(result));
             return;
         }
 

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface MenuMapper extends BaseMapper<Menu> {
     List<String> selectAllByUserId(Long userId);
+
+    List<Menu> selectMenuListByUserId(Long userId);
 }
