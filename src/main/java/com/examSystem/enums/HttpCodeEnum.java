@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 public enum HttpCodeEnum {
     SUCCESS(200, "操作成功"),
     NEED_LOGIN(401, "需要登录后操作"),
+    ID_OR_PASSWORD_IS_NULL(402, "账户或密码为空"),
     
+
     ;
 
 
