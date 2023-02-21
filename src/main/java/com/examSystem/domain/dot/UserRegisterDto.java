@@ -19,4 +19,6 @@ public class UserRegisterDto {
     private String college;
     //验证码
     private String captcha;
+    //密码
+    private String password;
 }

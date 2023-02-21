@@ -8,12 +8,10 @@ import com.examSystem.domain.entity.LoginUser;
 import com.examSystem.domain.entity.User;
 import com.examSystem.domain.vo.UserInfoVo;
 import com.examSystem.enums.HttpCodeEnum;
+import com.examSystem.exception.SystemException;
 import com.examSystem.mapper.UserMapper;
 import com.examSystem.service.UserService;
-import com.examSystem.utils.BeanCopyUtils;
-import com.examSystem.utils.JwtUtil;
-import com.examSystem.utils.RedisCache;
-import com.examSystem.utils.SecurityContextUtils;
+import com.examSystem.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -96,15 +94,59 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public ResponseResult register(UserRegisterDto userRegisterDto) {
+        User user = new User();
         //姓名不为空
+        if (!NameIsNull(userRegisterDto)) {
+            user.setName(userRegisterDto.getName());
+        }
         //性别不为空
+        if (!SexIsNull(userRegisterDto)) {
+            user.setSex(userRegisterDto.getSex());
+        }
         //手机号不为空
+        if (!PhoneNumberIsNull(userRegisterDto)) {
+            user.setPhonenumber(userRegisterDto.getPhonenumber());
+        }
         //学院不为空
+        if (StringUtils.hasText(userRegisterDto.getCollege())) {
+            user.setCollege(userRegisterDto.getCollege());
+        }
         //注册码不为空
+        if (PathUtils.CAPTCHA.equals(userRegisterDto.getCaptcha())) {
+            user.setRoleId(2L);
+        }
+        //判断密码
+        if (passwordIsAvailable(userRegisterDto.getPassword())) {
+            String encode = passwordEncoder.encode(userRegisterDto.getPassword());
+            user.setPassword(encode);
+        }
+        save(user);
 
-        return null;
+        return ResponseResult.okResult(user.getUserId().toString());
     }
 
+    private boolean passwordIsAvailable(String password) {
+        if (StringUtils.hasText(password)) {
+            if (password.matches("^[a-zA-Z0-9]{6,12}$")) {
+                return true;
+            } else {
+                throw new SystemException(HttpCodeEnum.PASSWORD_ERROR);
+            }
+        }
+        throw new SystemException(HttpCodeEnum.PASSWORD_NULL);
+    }
+
+    private boolean PhoneNumberIsNull(UserRegisterDto userRegisterDto) {
+        return !StringUtils.hasText(userRegisterDto.getPhonenumber());
+    }
+
+    private boolean NameIsNull(UserRegisterDto userDto) {
+        return !StringUtils.hasText(userDto.getName());
+    }
+
+    private boolean SexIsNull(UserRegisterDto userDto) {
+        return !StringUtils.hasText(userDto.getSex());
+    }
 
 }
 

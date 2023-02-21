@@ -14,6 +14,10 @@ public enum HttpCodeEnum {
     SYSTEM_ERROR(500, "系统异常"),
     LOGIN_ERROR(505, "账号或密码错误"),
 
+    PASSWORD_ERROR(506, "密码设置错误，长度只能在[6,12]，且不含数字字母外的字符！"),
+    PASSWORD_NULL(507, "密码不能为空"),
+
+
     ;
     private Integer code;
     private String msg;
