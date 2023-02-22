@@ -12,7 +12,11 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-
+    /**
+     * 查询用户路由查询
+     *
+     * @return
+     */
     @GetMapping("/getRouters")
     public ResponseResult getRouters() {
         return menuService.getRouters();

@@ -216,9 +216,9 @@
               <option name="name" value="Exam" />
               <option name="preName" value="" />
               <option name="saveModelName" value="examSystem" />
-              <option name="savePackageName" value="com.examSystem.domain" />
-              <option name="savePath" value="./src/main/java/com/examSystem/domain" />
-              <option name="templateGroupName" value="" />
+              <option name="savePackageName" value="com.examSystem" />
+              <option name="savePath" value="./src/main/java/com/examSystem" />
+              <option name="templateGroupName" value="Default" />
             </TableInfoDTO>
           </value>
         </entry>
@@ -621,6 +621,62 @@
               <option name="saveModelName" value="examSystem" />
               <option name="savePackageName" value="com.examSystem.service" />
               <option name="savePath" value="./src/main/java/com/examSystem/service" />
+              <option name="templateGroupName" value="Default" />
+            </TableInfoDTO>
+          </value>
+        </entry>
+        <entry key="exam_system.user_course">
+          <value>
+            <TableInfoDTO>
+              <option name="fullColumn">
+                <list>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext">
+                      <map />
+                    </option>
+                    <option name="name" value="courseId" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext">
+                      <map />
+                    </option>
+                    <option name="name" value="userId" />
+                    <option name="type" value="java.lang.Long" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext">
+                      <map />
+                    </option>
+                    <option name="name" value="courseName" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext">
+                      <map />
+                    </option>
+                    <option name="name" value="userName" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext">
+                      <map />
+                    </option>
+                    <option name="name" value="delFlag" />
+                    <option name="type" value="java.lang.Integer" />
+                  </ColumnInfoDTO>
+                </list>
+              </option>
+              <option name="name" value="UserCourse" />
+              <option name="preName" value="" />
+              <option name="saveModelName" value="examSystem" />
+              <option name="savePackageName" value="com.examSystem" />
+              <option name="savePath" value="./src/main/java/com/examSystem" />
               <option name="templateGroupName" value="Default" />
             </TableInfoDTO>
           </value>

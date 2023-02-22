@@ -15,6 +15,11 @@ import java.util.List;
  * @since 2023-02-21 20:08:23
  */
 public interface CourseMapper extends BaseMapper<Course> {
-    List<CourseVo> listAllByUserId(@Param("userId") Long userId, @Param("start") Integer start, @Param("pageSize") Integer pageSize);
+    List<CourseVo> listAllByUserId(@Param("userId") Long userId, @Param("start") Integer start, @Param("pageSize") Integer pageSize
+            , @Param("courseId") Long courseId, @Param("courseName") String courseName);
+
+    List<CourseVo> listAllCourseByUserId(@Param("userId") Long userId, @Param("start") Integer start, @Param("pageSize") Integer pageSize
+            , @Param("courseId") Long courseId, @Param("courseName") String courseName);
+
 }
 

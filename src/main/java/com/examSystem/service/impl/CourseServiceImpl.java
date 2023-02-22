@@ -2,6 +2,7 @@ package com.examSystem.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.examSystem.domain.ResponseResult;
+import com.examSystem.domain.dot.CourseAddDto;
 import com.examSystem.domain.entity.Course;
 import com.examSystem.domain.vo.CourseVo;
 import com.examSystem.domain.vo.PageVo;
@@ -9,6 +10,7 @@ import com.examSystem.mapper.CourseMapper;
 import com.examSystem.service.CourseService;
 import com.examSystem.utils.SecurityContextUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -22,11 +24,37 @@ import java.util.List;
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
 
     @Override
-    public ResponseResult listCourse(Integer pageNum, Integer pageSize) {
+    public ResponseResult joinCourse(Integer pageNum, Integer pageSize, Long courseId, String courseName) {
+
+        if (!StringUtils.hasText(courseName)) {
+            courseName = null;
+        }
+
         Long userId = SecurityContextUtils.getUserId();
-        List<CourseVo> courseVos = baseMapper.listAllByUserId(userId, (pageNum - 1) * pageSize, pageSize);
+        List<CourseVo> courseVos = baseMapper.listAllByUserId(userId, (pageNum - 1) * pageSize,
+                pageSize, courseId, courseName);
         PageVo pageVo = new PageVo(courseVos, (long) courseVos.size());
         return ResponseResult.okResult(pageVo);
+    }
+
+    @Override
+    public ResponseResult publishCourse(Integer pageNum, Integer pageSize, Long courseId, String courseName) {
+        if (!StringUtils.hasText(courseName)) {
+            courseName = null;
+        }
+        Long userId = SecurityContextUtils.getUserId();
+        List<CourseVo> courseVos = baseMapper.listAllCourseByUserId(userId, (pageNum - 1) * pageSize,
+                pageSize, courseId, courseName);
+        PageVo pageVo = new PageVo(courseVos, (long) courseVos.size());
+        return ResponseResult.okResult(pageVo);
+    }
+
+    @Override
+    public ResponseResult addCourse(CourseAddDto courseAddDto) {
+        Long userId = SecurityContextUtils.getUserId();
+        
+
+        return null;
     }
 }
 

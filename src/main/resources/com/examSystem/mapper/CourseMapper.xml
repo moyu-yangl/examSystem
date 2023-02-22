@@ -3,17 +3,47 @@
 <mapper namespace="com.examSystem.mapper.CourseMapper">
     <select id="listAllByUserId" resultType="com.examSystem.domain.vo.CourseVo">
         SELECT uc.course_id,
-               u.`name` teacherName,
-               uc.user_id,
-               uc.course_name,
-               uc.user_name
+        u.`name` teacherName,
+        uc.user_id,
+        uc.course_name,
+        uc.user_name
         FROM user_course uc
-                 LEFT JOIN course c ON c.course_id = uc.course_id
-                 LEFT JOIN `user` u ON c.user_id = u.user_id
+        LEFT JOIN course c ON c.course_id = uc.course_id
+        LEFT JOIN `user` u ON c.user_id = u.user_id
         WHERE uc.user_id = #{userId}
-          AND u.del_flag = 0
-          AND u.state = '0'
+        <if test="courseId!=null">
+            AND c.course_id=#{courseId}
+        </if>
+        <if test="courseName!=null">
+            AND c.course_name=#{courseName}
+        </if>
+        AND u.del_flag = 0
+        AND u.state = '0'
         LIMIT #{start} , #{pageSize}
+    </select>
+    <select id="listAllCourseByUserId" resultType="com.examSystem.domain.vo.CourseVo">
 
+        SELECT
+        u.user_id userId,
+        u.`name` teacherName,
+        c.course_id courseId,
+        c.course_name courseName
+        FROM
+        user u
+        LEFT JOIN course c ON u.user_id = c.user_id
+        WHERE
+        u.user_id = #{userId}
+        <if test="courseId!=null">
+            AND c.course_id=#{courseId}
+        </if>
+        <if test="courseName!=null">
+            AND c.course_name=#{courseName}
+        </if>
+
+        AND u.del_flag = 0
+        AND u.state = '0'
+        AND c.del_flag = 0
+        LIMIT #{start},
+        #{pageSize};
     </select>
 </mapper>
