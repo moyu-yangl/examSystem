@@ -14,7 +14,7 @@ import java.util.Date;
  * 考题表(Question)表实体类
  *
  * @author makejava
- * @since 2023-02-20 10:22:55
+ * @since 2023-02-22 21:42:25
  */
 @SuppressWarnings("serial")
 @Data
@@ -25,7 +25,6 @@ public class Question {
     //考题id
     @TableId
     private Long questionId;
-
     //x 选择题，t 填空题
     private String questionType;
     //题目内容
@@ -46,6 +45,16 @@ public class Question {
     private Date updateTime;
     //删除标志（0代表未删除，1代表已删除）
     private Integer delFlag;
+    //A选项
+    private String optionA;
+    //B选项
+    private String optionB;
+    //C选项
+    private String optionC;
+    //D选项
+    private String optionD;
+    //该题得分
+    private Integer point;
 
 
 }

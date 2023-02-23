@@ -17,6 +17,7 @@ import com.examSystem.utils.BeanCopyUtils;
 import com.examSystem.utils.SecurityContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return ResponseResult.okResult(pageVo);
     }
 
+    @Transactional
     @Override
     public ResponseResult addCourse(CourseAddDto courseAddDto) {
         Long userId = SecurityContextUtils.getUserId();

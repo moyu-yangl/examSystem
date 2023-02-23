@@ -2,6 +2,7 @@ package com.examSystem.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,8 +25,9 @@ public class Exam {
 
     //课程id
     private Long courseId;
+    @TableId
     //用户id
-    private Long userId;
+    private Long examId;
     //考试名称
     private String examName;
     //开始时间

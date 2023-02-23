@@ -2,6 +2,7 @@ import com.examSystem.ExamSystemApplication;
 import com.examSystem.domain.ResponseResult;
 import com.examSystem.domain.dot.UserRegisterDto;
 import com.examSystem.mapper.CourseMapper;
+import com.examSystem.mapper.ExamMapper;
 import com.examSystem.service.MenuService;
 import com.examSystem.service.UserService;
 import com.examSystem.utils.PathUtils;
@@ -51,4 +52,13 @@ public class test {
 //        List<CourseVo> courseVos = courseMapper.listAllByUserId(13L, start, 10, courseId, courseName);
         System.out.println(1);
     }
+
+    @Autowired
+    private ExamMapper examMapper;
+
+//    @Test
+//    public void examTest() {
+//        List<Exam> exams = examMapper.listAllByUserId(pageNum, pageSize, 13L, courseName, SecurityContextUtils.getUserId());
+//        System.out.println(1);
+//    }
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.examSystem.mapper.ExamMapper">
+    <select id="listAllByUserId" resultType="com.examSystem.domain.entity.Exam">
+        SELECT e.exam_id,
+        e.course_id,
+        e.exam_name,
+        e.start_time,
+        e.end_time,
+        e.score,
+        e.pass,
+        e.state,
+        e.create_time,
+        e.create_by,
+        e.update_by,
+        e.update_time,
+        e.del_flag
+        FROM user_exam ue
+        LEFT JOIN exam e ON ue.exam_id = e.exam_id
+        WHERE ue.user_id = #{userId}
+        <if test="courseId!=null">
+            AND e.course_id=#{courseId}
+        </if>
+        AND e.del_flag = 0
+        AND ue.del_flag = 0
+        ORDER BY e.course_id ASC,
+        e.exam_id ASC
+        Limit #{pageNum},#{pageSize}
+    </select>
+    <select id="listAllByCourseId" resultType="com.examSystem.domain.entity.Exam">
+        SELECT e.exam_id,
+               e.course_id,
+               e.exam_name,
+               e.start_time,
+               e.end_time,
+               e.score,
+               e.pass,
+               e.state,
+               e.create_time,
+               e.create_by,
+               e.update_by,
+               e.update_time,
+               e.del_flag
+        FROM user_exam ue
+                 LEFT JOIN exam e ON ue.exam_id = e.exam_id
+        WHERE e.course_id = #{courseId}
+          AND e.del_flag = 0
+          AND ue.del_flag = 0
+        ORDER BY e.course_id ASC,
+                 e.exam_id ASC
+    </select>
+</mapper>

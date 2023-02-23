@@ -2,6 +2,8 @@ package com.examSystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.examSystem.domain.ResponseResult;
+import com.examSystem.domain.dot.QuestionAddDto;
+import com.examSystem.domain.dot.QuestionUpdateDto;
 import com.examSystem.domain.entity.Question;
 
 
@@ -14,5 +16,13 @@ import com.examSystem.domain.entity.Question;
 public interface QuestionService extends IService<Question> {
 
     ResponseResult getQuestionByCourseId(Long courseId);
+
+    ResponseResult addQuestion(QuestionAddDto questionAddDto);
+
+    ResponseResult deleteQuestion(Long courseId, Long questionId);
+
+    ResponseResult updateQuestionById(QuestionUpdateDto questionDto);
+
+    ResponseResult checkQuestionList(Long courseId, Long examId, String state);
 }
 
