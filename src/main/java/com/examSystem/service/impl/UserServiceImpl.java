@@ -1,5 +1,6 @@
 package com.examSystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.examSystem.domain.ResponseResult;
 import com.examSystem.domain.dot.UserInfoDto;
@@ -7,6 +8,7 @@ import com.examSystem.domain.dot.UserRegisterDto;
 import com.examSystem.domain.entity.LoginUser;
 import com.examSystem.domain.entity.User;
 import com.examSystem.domain.vo.UserInfoVo;
+import com.examSystem.domain.vo.UserStudentVo;
 import com.examSystem.enums.HttpCodeEnum;
 import com.examSystem.exception.SystemException;
 import com.examSystem.mapper.UserMapper;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -123,6 +126,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         save(user);
 
         return ResponseResult.okResult(user.getUserId().toString());
+    }
+
+    @Override
+    public String getNameByUserId(Long studentId) {
+        return baseMapper.selectNameById(studentId);
+    }
+
+    @Override
+    public ResponseResult getAllStudent() {
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(User::getRoleId, 3);
+        List<User> list = list(lambdaQueryWrapper);
+        List<UserStudentVo> userStudentVos = BeanCopyUtils.copyBeanList(list, UserStudentVo.class);
+        return ResponseResult.okResult(userStudentVos);
     }
 
     private boolean passwordIsAvailable(String password) {

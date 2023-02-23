@@ -20,4 +20,9 @@ public interface UserService extends IService<User> {
     ResponseResult updateUser(UserInfoDto userInfoDto);
 
     ResponseResult register(UserRegisterDto userRegisterDto);
+
+    String getNameByUserId(Long studentId);
+
+    ResponseResult getAllStudent();
+    
 }

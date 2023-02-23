@@ -5,4 +5,6 @@ import com.examSystem.domain.entity.User;
 
 public interface UserMapper extends BaseMapper<User> {
     String getRoleById(Long userId);
+
+    String selectNameById(Long studentId);
 }

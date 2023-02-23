@@ -18,4 +18,6 @@ public class CourseVo {
     private String courseName;
     //开课老师名称
     private String teacherName;
+    //课程状态 0是未发布考试，1是已经发布考试
+    private String state;
 }

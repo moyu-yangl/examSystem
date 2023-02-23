@@ -1,6 +1,7 @@
 package com.examSystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.examSystem.domain.entity.UserCourse;
 
 
 /**

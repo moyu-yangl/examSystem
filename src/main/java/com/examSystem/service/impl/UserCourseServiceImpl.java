@@ -1,6 +1,9 @@
 package com.examSystem.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.examSystem.domain.entity.UserCourse;
+import com.examSystem.mapper.UserCourseMapper;
+import com.examSystem.service.UserCourseService;
 import org.springframework.stereotype.Service;
 
 /**

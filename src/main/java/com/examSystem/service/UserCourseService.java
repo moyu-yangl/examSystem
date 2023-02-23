@@ -1,6 +1,7 @@
 package com.examSystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.examSystem.domain.entity.UserCourse;
 
 
 /**

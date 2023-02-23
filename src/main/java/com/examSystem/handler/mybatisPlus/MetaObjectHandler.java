@@ -16,7 +16,7 @@ public class MetaObjectHandler implements com.baomidou.mybatisplus.core.handlers
         } catch (Exception e) {
             e.printStackTrace();
             //反正刚注册时没有userid
-            userId = 1L;
+            userId = 0L;
         }
         this.setFieldValByName("createTime", new Date(), metaObject);
         this.setFieldValByName("createBy", userId, metaObject);
@@ -27,6 +27,6 @@ public class MetaObjectHandler implements com.baomidou.mybatisplus.core.handlers
     @Override
     public void updateFill(MetaObject metaObject) {
         this.setFieldValByName("updateTime", new Date(), metaObject);
-        this.setFieldValByName(" ", SecurityContextUtils.getUserId(), metaObject);
+        this.setFieldValByName("updateBy", SecurityContextUtils.getUserId(), metaObject);
     }
 }

@@ -27,7 +27,8 @@
         u.user_id userId,
         u.`name` teacherName,
         c.course_id courseId,
-        c.course_name courseName
+        c.course_name courseName,
+        c.state state
         FROM
         user u
         LEFT JOIN course c ON u.user_id = c.user_id

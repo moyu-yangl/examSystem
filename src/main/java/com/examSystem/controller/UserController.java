@@ -43,4 +43,9 @@ public class UserController {
     public ResponseResult registerUser(@RequestBody UserRegisterDto userRegisterDto) {
         return userService.register(userRegisterDto);
     }
+
+    @GetMapping("/course/publish/students")
+    public ResponseResult getAllStudent() {
+        return userService.getAllStudent();
+    }
 }
