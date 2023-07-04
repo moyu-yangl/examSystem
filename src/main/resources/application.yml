@@ -1,30 +1,50 @@
+# 开发环境配置
 server:
-  port: 8081
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 1000
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+# 日志配置
+logging:
+  level:
+    org.springframework: warn
+
+
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/exam_system?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: druid
+
   servlet:
     multipart:
       max-file-size: 2MB
       max-request-size: 5MB
 
 mybatis-plus:
-  #  configuration:
-  #    # 日志
-  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  configuration:
+    # mybatis sql 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: delFlag
       logic-delete-value: 1
       logic-not-delete-value: 0
       id-type: auto
-  type-aliases-package: com.examSystem.domain.entity
-
+  type-aliases-package: com.common.domain.entity
+# 七牛oss
 oss:
-  accessKey: hjr05n6YQR-knq4ygpm-WT7L5H8dgaAcZbUJIbW4
-  secretKey: PMeQq8s7ikZx6iY28OJV63EISsCJPtUlxdpvsZrK
-  bucket: yl-zz-test
-  outChain: rq9ueczku.hd-bkt.clouddn.com
+  accessKey: my accessKey
+  secretKey: my secretKey
+  bucket: my bucket
+  outChain: my outChain
